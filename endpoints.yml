@@ -14,7 +14,7 @@
 #  actions_module: "actions"
 
 action_endpoint:
-  url: "${ACTION_SERVER_URL}/webhook"
+  url: "https://acme-action-server.onrender.com/webhook"
 
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
