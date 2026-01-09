@@ -10,7 +10,7 @@ import os
 db_pool = psycopg2.pool.SimpleConnectionPool(
     1, 20,
     host=os.getenv("DB_HOST", "localhost"),
-    database=os.getenv("DB_NAME", "Products"),
+    database=os.getenv("DB_NAME", "products"),
     user=os.getenv("DB_USER", "postgres"),
     password=os.getenv("DB_PASSWORD", "Yabalshtroukplok1$"),
     port=os.getenv("DB_PORT", "5432")
