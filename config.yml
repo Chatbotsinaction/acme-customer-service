@@ -1,0 +1,26 @@
+#recipe: default.v1
+#assistant_id: immature-can
+#language: en
+#
+#pipeline:
+#  - name: CompactLLMCommandGenerator
+#    llm:
+#      model_group: ollama_llm
+#    flow_retrieval:
+#      embeddings:
+#        model_group: ollama_embeddings
+#
+#policies:
+#  - name: FlowPolicy
+
+recipe: default.v1
+language: en
+assistant_id: icy-procedure
+pipeline:
+- name: CompactLLMCommandGenerator
+  llm:
+    model_group: rasa_command_generation_model
+  flow_retrieval:
+    active: false
+policies:
+- name: FlowPolicy

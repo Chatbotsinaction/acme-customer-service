@@ -1,0 +1,52 @@
+flows:
+  greet_customer:
+    description: "Initial greeting and entry point for customer service."
+    steps:
+      - action: utter_greet
+
+  check_order_status:
+    description: "Help customers check the status of an existing order by order ID."
+    steps:
+      - collect: order_id
+        description: "The customer's order ID, typically a number or alphanumeric code."
+      - action: action_lookup_order_status
+        next:
+          - if: slots.order_status
+            then:
+              - action: utter_show_order_status
+                next: END
+          - else:
+              - action: utter_order_not_found
+                next: END
+
+  product_information:
+    description: "Provide information about a specific product and verify availability."
+    steps:
+      - collect: product_name
+        description: "Name of the product the customer is asking about."
+      - action: action_lookup_product
+        next:
+          - if: slots.product_available is true
+            then:
+              - action: utter_product_available
+                next: END
+          - if: slots.product_available is false
+            then:
+              - action: utter_product_unavailable
+                next: END
+          - else:
+              - action: utter_product_not_found
+                next: END
+
+  open_support_ticket:
+    description: "Create a generic support ticket for the customer."
+    steps:
+      - collect: issue_description
+        description: "Short description of the customer's problem."
+      - action: action_create_support_ticket
+      - action: utter_ticket_created
+
+  end_conversation:
+    description: "Politely end the conversation."
+    steps:
+      - action: utter_goodbye

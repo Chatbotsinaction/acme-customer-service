@@ -1,0 +1,82 @@
+version: "3.0"
+
+slots:
+  product_id:
+    type: text
+    mappings:
+      - type: controlled
+  product_price:
+    type: float
+    mappings:
+      - type: controlled
+  product_stock:
+    type: float
+    mappings:
+      - type: controlled
+  order_id:
+    type: text
+    mappings:
+      - type: from_llm
+  order_status:
+    type: text
+    mappings:
+      - type: controlled
+  product_name:
+    type: text
+    mappings:
+      - type: from_llm
+  product_available:
+    type: bool
+    mappings:
+      - type: controlled
+  product_description:
+    type: text
+    mappings:
+      - type: controlled
+  issue_description:
+    type: text
+    mappings:
+      - type: from_llm
+  ticket_id:
+    type: text
+    mappings:
+      - type: controlled
+
+responses:
+  utter_greet:
+    - text: "Hi, welcome to ACME customer service. I can help with orders and product information. What do you need?"
+
+  utter_goodbye:
+    - text: "Thanks for contacting ACME support. Have a great day!"
+
+  utter_ask_order_id:
+    - text: "Sure, I can help with your order. What is your order ID?"
+
+  utter_show_order_status:
+    - text: "The status of order {order_id} is: {order_status}."
+
+  utter_order_not_found:
+    - text: "I couldn't find an order with ID {order_id}. Could you double-check the number?"
+
+  utter_ask_product_name:
+    - text: "Which product would you like information about?"
+
+  utter_product_available:
+    - text: "The product \"{product_name}\" is available. Details: {product_description}"
+
+  utter_product_unavailable:
+    - text: "The product \"{product_name}\" is currently not available."
+
+  utter_product_not_found:
+    - text: "I couldn't find a product called \"{product_name}\". Could you check the name or give me more details?"
+
+  utter_ask_issue_description:
+    - text: "Please briefly describe the issue you're facing."
+
+  utter_ticket_created:
+    - text: "Your support ticket {ticket_id} has been created. Our team will get back to you shortly."
+
+actions:
+  - action_lookup_order_status
+  - action_lookup_product
+  - action_create_support_ticket
