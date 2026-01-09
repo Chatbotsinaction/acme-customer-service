@@ -3,7 +3,7 @@ const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
 
 // Replace with your deployed Rasa server URL
-const RASA_SERVER_URL = 'http://localhost:5005';
+const RASA_SERVER_URL = 'https://acme-rasa-server.onrender.com';
 const sender_id = 'user_' + Math.random().toString(36).substr(2, 9);
 
 // Add initial greeting
@@ -105,4 +105,5 @@ userInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         sendMessage();
     }
+
 });
